@@ -16,8 +16,7 @@ import Settings from './components/Settings/Settings';
 const App = (props) => {
 
   return (
-    <BrowserRouter>
-      <div className='app-wrapper'>
+        <div className='app-wrapper'>
         <Header />
         <Navbar />
         <div className='app-wrapper-content'>
@@ -30,7 +29,6 @@ const App = (props) => {
           </Routes>
         </div>
       </div>
-    </BrowserRouter>
   );
 }
 
