@@ -9,6 +9,7 @@ import { rerenderEntireTree } from "../render";
             {id:3, message: "Blabla", likeCount: 13},
             {id:4, message: "DAda", likeCount: 14},
           ],
+          newPostText:'it-kamasutra.com'
           
 
     },
@@ -34,13 +35,19 @@ import { rerenderEntireTree } from "../render";
   }
 
 
-  export let addPost=(postMessage)=>{
+  export let addPost=()=>{
     let newPost={
       id:5,
-      message:postMessage,
+      message:state.profilePage.newPostText,
       likeCount: 0,
     };
     state.profilePage.posts.push(newPost);
+    state.profilePage.newPostText='';
+    rerenderEntireTree(state);
+  }
+
+  export let updateNewPostText=(newText)=>{
+    state.profilePage.newPostText= newText;
     rerenderEntireTree(state);
   }
 
