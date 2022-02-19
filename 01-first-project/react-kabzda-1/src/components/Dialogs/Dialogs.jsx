@@ -9,28 +9,20 @@ import Message from './Message/Message';
 
 const Dialogs = (props) => {
 
-    let state=props.store.getState().dialogsPage;
+    let state = props.store.getState().dialogsPage;
 
     let dialogsElements = state.dialogs.map(d => <DialogItem name={d.name} id={d.id} />);
     let messagesElements = state.messages.map(m => <Message message={m.message} />);
     let newMessageBody = state.newMessageBody;
 
-    let onSendMessageClick = ()=>{
+    let onSendMessageClick = () => {
         props.store.dispatch(sendMessageCreator());
     };
 
-    let onNewMessageChange=(e)=>{
+    let onNewMessageChange = (e) => {
         let body = e.target.value;
-       props.store.dispatch(updateNewMessageBodyCreator(body));
+        props.store.dispatch(updateNewMessageBodyCreator(body));
     };
-
-    {/*let newMessageElement = React.createRef();
-    let addMessage = () => {
-        let text=newMessageElement.current.value;
-        alert(text);
-      }*/}
-
-
 
     return (
         <div className={s.dialogs}>
@@ -39,13 +31,13 @@ const Dialogs = (props) => {
                 {dialogsElements}
             </div>
             <div className={s.messages}>
-               <div> {messagesElements}</div>
-               <div>
-                   <div><textarea value={newMessageBody}
-                        onChange={ onNewMessageChange }
+                <div> {messagesElements}</div>
+                <div>
+                    <div><textarea value={newMessageBody}
+                        onChange={onNewMessageChange}
                         placeholder='Enter your message'></textarea></div>
-                   <div><button  onClick={ onSendMessageClick }>Send</button></div>
-               </div>
+                    <div><button onClick={onSendMessageClick}>Send</button></div>
+                </div>
             </div>
 
         </div>
