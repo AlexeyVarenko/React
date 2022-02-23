@@ -10,29 +10,27 @@ import { Provider } from 'react-redux'
 
 
 
-let rerenderEntireTree=(state)=>{
-  
-  ReactDOM.render(
-    <React.StrictMode>
-      <BrowserRouter>
+
+ReactDOM.render(
+  <React.StrictMode>
+    <BrowserRouter>
       <Provider store={store}>
-        <App  />
+        <App />
       </Provider>
-      </BrowserRouter>
-    </React.StrictMode>,
-    document.getElementById('root')
-  );
-
-};
+    </BrowserRouter>
+  </React.StrictMode>, document.getElementById('root')
+);
 
 
-rerenderEntireTree(store.getState());
 
 
-store.subscribe( ()=>{
+
+
+
+{/*store.subscribe( ()=>{
   let state=store.getState();
   rerenderEntireTree(state);
-});
+});*/}
 
 
 
