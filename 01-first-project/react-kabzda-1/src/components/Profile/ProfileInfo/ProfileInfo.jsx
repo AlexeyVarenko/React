@@ -18,6 +18,7 @@ const ProfileInfo = (props) => {
        <div>{props.profile.aboutMe}</div>
        <div>{props.profile.fullName}</div>
        <div>{props.profile.contacts.facebook}</div>
+            {props.profile.lookingForAJob ? <div>Ищу работу </div>   : null }
     </div>
   </div>
 }
