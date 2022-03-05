@@ -20,18 +20,18 @@ export const getUsers = (currentPage, pageSize) => {
 
 
 
-export const followUsers = (u) => {
+export const followUsers = (userId) => {
 
-    return instance.delete(`follow/${u.id}`)
+    return instance.delete(`follow/${userId}`)
         .then(response => {
             return response.data;
         });
 
 }
 
-export const unFollowUsers = (u) => {
+export const unFollowUsers = (userId) => {
 
-    return instance.post(`follow/${u.id}`, {}, )
+    return instance.post(`follow/${userId}`, {}, )
         .then(response => {
             return response.data;
         });
