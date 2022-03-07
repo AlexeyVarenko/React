@@ -2,8 +2,9 @@ import React from 'react';
 import Profile from './Profile';
 import {getUserProfile} from '../../Redux/profile-reducer'
 import { connect } from 'react-redux';
-import { Navigate, useMatch } from 'react-router-dom';
+import {  useMatch } from 'react-router-dom';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
+import { compose } from 'redux';
 
 
 
@@ -30,14 +31,19 @@ const ProfileMatch = (props) => {
 	)
 }
 
-
-let AuthRedirectComponent=withAuthRedirect(ProfileMatch);
-
-
 let mapStateToProps = (state) =>({
-   profile:state.profilePage.profile,
+  profile:state.profilePage.profile,
 })
 
+export default compose (
+  connect (mapStateToProps, {getUserProfile}),
+  withAuthRedirect,
+) (ProfileMatch)
 
 
-export default connect (mapStateToProps, {getUserProfile}) (AuthRedirectComponent);
+/*let AuthRedirectComponent=withAuthRedirect(ProfileMatch);*/
+
+
+
+
+/*export default connect (mapStateToProps, {getUserProfile}) (AuthRedirectComponent);*/
