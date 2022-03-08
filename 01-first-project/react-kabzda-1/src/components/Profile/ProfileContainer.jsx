@@ -37,13 +37,6 @@ let mapStateToProps = (state) =>({
 
 export default compose (
   connect (mapStateToProps, {getUserProfile}),
-  withAuthRedirect,
+  //withAuthRedirect,
 ) (ProfileMatch)
 
-
-/*let AuthRedirectComponent=withAuthRedirect(ProfileMatch);*/
-
-
-
-
-/*export default connect (mapStateToProps, {getUserProfile}) (AuthRedirectComponent);*/
