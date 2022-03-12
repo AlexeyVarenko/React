@@ -19,7 +19,10 @@ class ProfileContainer extends React.Component {
   render() {
 
     return (
-      <Profile {...this.props} profile={this.props.profile} status={this.props.status} updateStatus={this.props.updateStatus}/>
+      <Profile {...this.props} 
+      profile={this.props.profile} 
+      status={this.props.status} 
+      updateStatus={this.props.updateStatus}/>
     )
   }
 }
@@ -34,6 +37,8 @@ const ProfileMatch = (props) => {
 let mapStateToProps = (state) =>({
   profile:state.profilePage.profile,
   status: state.profilePage.status,
+  autorizedUserId: state.auth.userId,
+  isAuth: state.auth.isAuth
 });
 
 export default compose (
