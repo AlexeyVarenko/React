@@ -1,4 +1,5 @@
 import { followUsers, getUsers, unFollowUsers } from "../api/api";
+import { updateObjectInArray } from "../utils/objects-helpers";
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -23,6 +24,9 @@ const usersReducer = (state = initialState, action) => {
     case FOLLOW:
       return {
         ...state,
+        /*users:updateObjectInArray(state.users, action.userID, "Id", {followed: true} ) ЭТОТ РЕФАКТОРИНГ НЕ РАБОТАЕТ*/
+       
+       
         users: state.users.map(u => {
           if (u.id == action.userID) {
             return { ...u, followed: true }
@@ -34,6 +38,8 @@ const usersReducer = (state = initialState, action) => {
     case UNFOLLOW:
       return {
         ...state,
+       /* users:updateObjectInArray(state.users, action.userID, "Id", {followed: false} ) ЭТОТ РЕФАКТОРИНГ НЕ РАБОТАЕТ*/
+
         users: state.users.map(u => {
           if (u.id == action.userID) {
             return { ...u, followed: false }
@@ -79,45 +85,40 @@ export const toggleFollowinginProgress = (isFetching, userId) => ({ type: TOGGLE
 
 
 export const getUsersThunkCreator = (currentPage, pageSize) => {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(setCurrentPage(currentPage));
     dispatch(toggleIsFetching(true));
 
-    getUsers(currentPage, pageSize)
-      .then(data => {
-        dispatch(toggleIsFetching(false));
-        dispatch(setUsers(data.items));
-        dispatch(setTotalUsersCount(data.totalCount));
-      });
+    let data = await getUsers(currentPage, pageSize);
+    dispatch(toggleIsFetching(false));
+    dispatch(setUsers(data.items));
+    dispatch(setTotalUsersCount(data.totalCount));
   }
 }
 
 
+
 export const follow = (userId) => {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(toggleFollowinginProgress(true, userId));
-    unFollowUsers(userId)
-      .then(data => {
+   let data= await unFollowUsers(userId);
 
         if (data.resultCode === 0) {
           dispatch(followSucces(userId));
         }
         dispatch(toggleFollowinginProgress(false, userId));
-      });
   }
 }
 
 export const unfollow = (userId) => {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(toggleFollowinginProgress(true, userId));
-    followUsers(userId)
-      .then(data => {
+    let data= await followUsers(userId);
 
         if (data.resultCode === 0) {
           dispatch(unfollowSucces(userId));
         }
         dispatch(toggleFollowinginProgress(false, userId));
-      });
   }
 }
 
