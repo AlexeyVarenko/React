@@ -1,8 +1,8 @@
 import React from 'react';
 import Preloader from '../../common/Preloader/Preloader';
 import s from './ProfileInfo.module.css';
-import ProfileStatus from './ProfileStatus'
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
+import userPhoto from '../../../assets/images/user.png'
 
 const ProfileInfo = (props) => {
 
@@ -10,14 +10,18 @@ const ProfileInfo = (props) => {
     return <Preloader/>
   }
 
+  const onMainPhotoSelected=(e)=>{
+    if (e.target.files.length) {
+      props.savePhoto(e.target.files[0])
+    }
+  }
+
 
   return <div>
-    <div>
-      <img src='https://images.ctfassets.net/hrltx12pl8hq/7yQR5uJhwEkRfjwMFJ7bUK/dc52a0913e8ff8b5c276177890eb0129/offset_comp_772626-opt.jpg?fit=fill&w=800&h=300' />
-    </div>
     <div className={s.descriptionBlock}>
       <ProfileStatusWithHooks status ={props.status} updateStatus={props.updateStatus}/>
-      <img src={props.profile.photos.large}/>
+      <img src={props.profile.photos.large || userPhoto } className={s.mainPhoto}/>
+     <div> {props.isOwner && <input type={"file"} onChange={onMainPhotoSelected}/>} </div>
        <div>{props.profile.aboutMe}</div>
        <div>{props.profile.fullName}</div>
        <div>{props.profile.contacts.facebook}</div>

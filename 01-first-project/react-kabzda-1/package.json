@@ -2,7 +2,7 @@
   "name": "react-kabzda-1",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://alexeyvarenko.github.io/demoSamurai",
+  "homepage": "https://alexeyvarenko.github.io/React/01-first-project/react-kabzda-1",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.2",
@@ -48,7 +48,6 @@
   },
   "devDependencies": {
     "gh-pages": "^3.2.3",
-    "gh-pages-deploy": "^0.5.1",
     "react-test-renderer": "^17.0.2"
   }
 }
