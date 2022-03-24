@@ -18,14 +18,14 @@ let Paginator = ({totalItemsCount, pageSize, currentPage, onPageChanged, portion
     let rightPortionPageNumber = portionNumber * portionSize;
 
     return (
-        <div className={styles.paginator}>
+        <div className={cn(styles.paginator)}>
             {portionNumber > 1 && <button onClick={()=>{setPortionNumber(portionNumber-1)}}>Prev</button>}
 
 
             {pages
             .filter(p=>p>=leftPortionPageNumber && p<=rightPortionPageNumber)
             .map(p => {
-                return <span className={cn({
+                return <span className={cn({ 
                     [styles.seletedPage]:currentPage === p
                 },  styles.pageNumber)}
                     key={p}
